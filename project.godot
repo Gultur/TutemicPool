@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="Tutemic Pool"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"

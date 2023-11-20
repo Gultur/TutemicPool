@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://du08r5do21p1f"]
+
+[ext_resource type="PackedScene" uid="uid://ci3rfq6oxk70x" path="res://scenes/billiard_table.tscn" id="1_x5j2v"]
+[ext_resource type="PackedScene" uid="uid://bve0ts4mh7eni" path="res://scenes/ball.tscn" id="2_1xkar"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Billiard Table" parent="." instance=ExtResource("1_x5j2v")]
+metadata/_edit_lock_ = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.162465, 0.986714, 0, -0.986714, 0.162465, 0, 1.01817, 0.18358)
+metadata/_edit_lock_ = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.489778, 0.871847, 0, -0.871847, 0.489778, 0, 3.31365, 9.50698)
+shadow_enabled = true
+shadow_bias = 0.05
+metadata/_edit_lock_ = true
+
+[node name="Ball" parent="." instance=ExtResource("2_1xkar")]
