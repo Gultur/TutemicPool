@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci3rfq6oxk70x"]
+[gd_scene load_steps=3 format=3 uid="uid://ci3rfq6oxk70x"]
 
 [ext_resource type="PackedScene" uid="uid://bjpra71lqxlul" path="res://assets/Billiard Table.blend" id="1_mixw1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_my7t7"]
+size = Vector3(2.13505, 0.001, 1.06322)
 
 [node name="Billiard Table" instance=ExtResource("1_mixw1")]
 
@@ -92,3 +95,8 @@ visible = false
 [node name="Cue 1" parent="." index="23"]
 transform = Transform3D(-0.0207357, -0.855799, -0.516892, 0.999707, -0.0242225, -1.49012e-07, -0.0125203, -0.51674, 0.856051, 0, 0, 0)
 visible = false
+
+[node name="Surface" type="StaticBody3D" parent="." index="24"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Surface" index="0"]
+shape = SubResource("BoxShape3D_my7t7")

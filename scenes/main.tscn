@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://du08r5do21p1f"]
+[gd_scene load_steps=4 format=3 uid="uid://du08r5do21p1f"]
 
 [ext_resource type="PackedScene" uid="uid://ci3rfq6oxk70x" path="res://scenes/billiard_table.tscn" id="1_x5j2v"]
 [ext_resource type="PackedScene" uid="uid://bve0ts4mh7eni" path="res://scenes/ball.tscn" id="2_1xkar"]
+[ext_resource type="Texture2D" uid="uid://6dlpjtiyr3xm" path="res://assets/textures/16074.jpg" id="3_srs3c"]
 
 [node name="Main" type="Node3D"]
 
@@ -19,3 +20,8 @@ shadow_bias = 0.05
 metadata/_edit_lock_ = true
 
 [node name="Ball" parent="." instance=ExtResource("2_1xkar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.418179, 0)
+
+[node name="Ball2" parent="." instance=ExtResource("2_1xkar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180244, 0.414178, 0.198871)
+_texture = ExtResource("3_srs3c")
