@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://du08r5do21p1f"]
+[gd_scene load_steps=8 format=3 uid="uid://du08r5do21p1f"]
 
 [ext_resource type="PackedScene" uid="uid://ci3rfq6oxk70x" path="res://scenes/billiard_table.tscn" id="1_x5j2v"]
 [ext_resource type="PackedScene" uid="uid://bve0ts4mh7eni" path="res://scenes/ball.tscn" id="2_1xkar"]
 [ext_resource type="Texture2D" uid="uid://6dlpjtiyr3xm" path="res://assets/textures/16074.jpg" id="3_srs3c"]
+[ext_resource type="Script" path="res://scripts/play_system.gd" id="4_uf6pf"]
+[ext_resource type="ArrayMesh" uid="uid://bucfpilbdy4pd" path="res://assets/cue_stick.res" id="5_trigw"]
+[ext_resource type="Script" path="res://scenes/AimContainer.gd" id="5_uwupi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c2u34"]
+radius = 0.144328
+height = 1.65782
 
 [node name="Main" type="Node3D"]
 
@@ -11,6 +18,8 @@ metadata/_edit_lock_ = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.162465, 0.986714, 0, -0.986714, 0.162465, 0, 1.01817, 0.18358)
+visible = false
+current = true
 metadata/_edit_lock_ = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -19,9 +28,35 @@ shadow_enabled = true
 shadow_bias = 0.05
 metadata/_edit_lock_ = true
 
-[node name="Ball" parent="." instance=ExtResource("2_1xkar")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.418179, 0)
-
 [node name="Ball2" parent="." instance=ExtResource("2_1xkar")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180244, 0.414178, 0.198871)
 _texture = ExtResource("3_srs3c")
+
+[node name="PlaySystem" type="Node3D" parent="." node_paths=PackedStringArray("_cue_ball")]
+script = ExtResource("4_uf6pf")
+_cue_ball = NodePath("CueBall")
+
+[node name="CueBall" parent="PlaySystem" instance=ExtResource("2_1xkar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0273155, 0)
+
+[node name="AimContainer" type="Node3D" parent="PlaySystem"]
+script = ExtResource("5_uwupi")
+
+[node name="CueStick" type="Node3D" parent="PlaySystem/AimContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.996531, 0.0832256, 0, -0.0832256, 0.996531, 0, 0.0840712, 0.800703)
+metadata/_edit_group_ = true
+
+[node name="CueStick" type="MeshInstance3D" parent="PlaySystem/AimContainer/CueStick"]
+transform = Transform3D(0.999899, 0.0141744, 0.000643653, 3.96575e-09, -0.045363, 0.998971, 0.0141891, -0.99887, -0.0453584, 0, 0, 0)
+mesh = ExtResource("5_trigw")
+skeleton = NodePath("../../../..")
+
+[node name="AimCamera" type="Camera3D" parent="PlaySystem/AimContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.973742, 0.227654, 0, -0.227654, 0.973742, 0, 0.273289, 0.906629)
+current = true
+fov = 60.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlaySystem/AimContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0163)
+visible = false
+shape = SubResource("CapsuleShape3D_c2u34")
